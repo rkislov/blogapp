@@ -1,40 +1,58 @@
 const express = require('express')
 const router = express.Router()
+const newsController = require('../controllers/NewsController')
 
-const fakeNews = [
-    {
-        id: '1',
-        title: 'Первая статья',
-        teaser: 'Первая запись',
-        body: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet animi architecto at consequatur delectus distinctio dolore doloribus ea est, ex excepturi in, ipsum neque nobis nostrum nulla odio rerum saepe tempora vel velit veritatis voluptates voluptatibus voluptatum? A assumenda atque beatae dolorem error laborum optio placeat quis quod recusandae.`
-    },
-    {
-        id: '2',
-        title: 'Вторая статья',
-        teaser: 'Вторая запись',
-        body: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet animi architecto at consequatur delectus distinctio dolore doloribus ea est, ex excepturi in, ipsum neque nobis nostrum nulla odio rerum saepe tempora vel velit veritatis voluptates voluptatibus voluptatum? A assumenda atque beatae dolorem error laborum optio placeat quis quod recusandae.`
-    },
-    {
-        id: '3',
-        title: 'Третья статья',
-        teaser: 'Третья запись',
-        body: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet animi architecto at consequatur delectus distinctio dolore doloribus ea est, ex excepturi in, ipsum neque nobis nostrum nulla odio rerum saepe tempora vel velit veritatis voluptates voluptatibus voluptatum? A assumenda atque beatae dolorem error laborum optio placeat quis quod recusandae.`
-    }
-]
 
 router.get('/', (req,res,next) =>{
-    res.status(200).send({
-        data: fakeNews
+    newsController.find(req.query, (err,results)=>{
+        if(err){
+            console.log(err)
+            res.json({
+                success: 0,
+                error: err
+            })
+            return
+        }
+        res.json({
+            success: 1,
+            data:results
+        })
     })
 })
 
 router.get('/:id', (req,res,next) => {
     const id = req.params.id
 
-    const picked = fakeNews.find(o => o.id === id)
+    newsController.findById(id, (err, result) => {
+        if(err){
+            console.log(err)
+            res.status(500).json({
+                success: 0,
+                data: result
+            })
+            return
+        }
+        res.status(200).json({
+            success: 0,
+            data: result
+        })
+    })
+})
 
-    res.status(200).send({
-        data:picked
+router.post('/', (req,res,next) =>{
+    newsController.create(req.body, (err,result)=>{
+        if(err){
+            console.log(err)
+            res.json({
+                success: 0,
+                error: err
+            })
+            return
+        }
+        res.json({
+            success:1,
+            data:result
+        })
     })
 })
 

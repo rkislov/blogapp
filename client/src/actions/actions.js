@@ -12,6 +12,7 @@ function newsReceived(news) {
         news: news
     }
 }
+
 function newsItemLoading() {
     return {
         type: actionTypes.NEWSITEM_LOADING
@@ -33,5 +34,20 @@ export function fetchNewsItem(id) {
             .then( response => response.json())
             .then( data => dispatch(newsItemReceived(data.data)))
             .catch((e) => console.log(e))
+    }
+}
+
+export function submitNewStory(data) {
+    return dispatch => {
+        return fetch('/news/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+            mode: 'cors'
+        })
+            .catch(e => console.log(e))
     }
 }

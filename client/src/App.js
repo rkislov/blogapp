@@ -8,6 +8,7 @@ import Layout from './components/layouts/Layout'
 import { Provider } from 'react-redux'
 import store from './store/store'
 import NewsArticle from './components/containers/NewsArticle'
+import NewsSubmit from "./components/containers/NewsSubmit";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
                   <Route exact path="/" component={Home}/>
                   <Route path="/about" component={About}/>
                   <Route path="/blog/:id" component={NewsArticle}/>
+                  <Route path="/submit" component={NewsSubmit}/>
               </Layout>
             </BrowserRouter>
         </Provider>

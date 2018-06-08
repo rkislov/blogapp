@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewsItemListing from '../presentation/NewsItemListing'
 import { connect } from 'react-redux'
 import { fetchNews } from "../../actions/actions";
+import { Link } from 'react-router-dom'
 
 class News extends Component{
     componentDidMount(){
@@ -15,6 +16,7 @@ class News extends Component{
         return (
             <div>
             <h2>Список Новостей</h2>
+                <Link to={'/submit'}>Добавить</Link>
                 {(this.props.news.length>0)? <ul>{newsItems}</ul> : <div>Простите но пока нет новостей</div>}
             </div>
         )
