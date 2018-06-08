@@ -5,17 +5,8 @@ import { fetchNews } from "../../actions/actions";
 
 class News extends Component{
     componentDidMount(){
-        var fakeNews = [{
-            id: '1',
-            title: 'Первая новость',
-            teaser: 'Первая тестовая запись'
-        },{
-            id: '2',
-            title: 'Вторая новость',
-            teaser: 'Вторая тестовая запись'
-        }]
 
-        this.props.dispatch(fetchNews(fakeNews))
+        this.props.dispatch(fetchNews())
     }
     render() {
         const newsItems  = this.props.news.map((news, i) => {

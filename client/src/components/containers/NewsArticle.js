@@ -7,18 +7,7 @@ class NewsArticle extends Component {
 
     componentDidMount(){
 
-        const fakeNewsItem = {
-            id: '1',
-            title: 'Первая новость',
-            teaser: 'Первая тестовая запись',
-            body: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-             Animi aperiam debitis ducimus eligendi excepturi facere nostrum sunt veritatis voluptatem? 
-             Fugiat molestias nesciunt numquam possimus tenetur. Commodi consequuntur cum enim nesciunt praesentium 
-             repellat, rerum voluptatibus? Consectetur corporis cum dolorem eius harum illum molestias praesentium, 
-             repellendus reprehenderit? Ab commodi doloremque expedita provident.`
-        }
-
-        this.props.dispatch(fetchNewsItem(fakeNewsItem))
+        this.props.dispatch(fetchNewsItem(this.props.match.params.id))
     }
 
     render() {
@@ -28,7 +17,7 @@ class NewsArticle extends Component {
             <div>
                 <h2>Новая история</h2>
                 <ul>
-                    {newsItem ? <NewsItemDetail data={newsItem}/> : null}
+                    {!this.props.newsItemLoading ?  <NewsItemDetail data={newsItem}/> : <div>Загрузка.....</div>}
                 </ul>
             </div>
         )
@@ -38,7 +27,8 @@ class NewsArticle extends Component {
 
 const mapStateToProps = state => {
     return {
-        newsItem: state.news.newsItem
+        newsItem: state.news.newsItem,
+        newsItemLoading: state.news.newsItemLoading
     }
 }
 
