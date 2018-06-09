@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
+const authRoute = require('./routes/auth')
 
 
 const app = express()
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 app.use('/',routes)
 app.use('/news', newsRoute)
+app.use('/user',authRoute)
 
 app.listen(PORT, () => {
     console.log(`API сервер работает на порту ${PORT}`)

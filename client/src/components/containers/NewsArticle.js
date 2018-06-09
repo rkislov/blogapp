@@ -14,8 +14,8 @@ class NewsArticle extends Component {
         let  { newsItem }  = this.props
 
         return(
-            <div>
-                <h2>Новая история</h2>
+            <div className="card-body">
+                <div className="card-header h3">Новая история</div>
                 <ul>
                     {!this.props.newsItemLoading ?  <NewsItemDetail data={newsItem}/> : <div>Загрузка.....</div>}
                 </ul>

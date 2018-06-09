@@ -31,13 +31,30 @@ class NewsSubmit extends Component{
 
     render(){
         return(
-            <div>
-                Название <input onChange={this.updateSubmission.bind(this)} id="title" type="text" placeholder="Название"/><br/>
-                Представление <input onChange={this.updateSubmission.bind(this)} id="teaser" type="text" placeholder="Представление"/><br/>
-                Содержание<br/>
-                <textarea onChange={this.updateSubmission.bind(this)} id="body" type="text"></textarea><br/>
+            <div className="card">
+                <div className="card-header">
+                    Добавить
+                </div>
+                <div className="form-group">
+                    <label for="title">
+                        Название
+                    </label>
+                    <input className="form-control" onChange={this.updateSubmission.bind(this)} id="title" type="text" placeholder="Название"/>
+                </div>
+                <div className="form-group">
+                    <label for="teaser">
+                Представление
+                    </label>
+                    <input className="form-control" onChange={this.updateSubmission.bind(this)} id="teaser" type="text" placeholder="Представление"/>
+                </div>
+                <div className="form-group">
+                    <label for="body">
+                        Содержание
+                    </label>
 
-                <button onClick={this.submitSubmission.bind(this)}>Опубликовать</button>
+                    <textarea className="form-control" onChange={this.updateSubmission.bind(this)} id="body" type="text"></textarea><br/>
+                </div>
+                <button className="btn btn-block btn-outline-primary" onClick={this.submitSubmission.bind(this)}>Опубликовать</button>
             </div>
         )
     }

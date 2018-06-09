@@ -6,8 +6,8 @@ class NewsItemDetail extends Component {
     render(){
         return(
             <div>
-                <h2>{this.props.data.title}</h2>
-                <p>{this.props.data.body}</p>
+                <div className="card-title h4">{this.props.data.title}</div>
+                <div className="card-text">{this.props.data.body}</div>
             </div>
         )
     }

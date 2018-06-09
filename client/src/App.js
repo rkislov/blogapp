@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 import store from './store/store'
 import NewsArticle from './components/containers/NewsArticle'
 import NewsSubmit from "./components/containers/NewsSubmit";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/fontawesome/index'
 
 class App extends Component {
   render() {

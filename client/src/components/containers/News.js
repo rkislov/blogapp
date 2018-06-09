@@ -11,13 +11,15 @@ class News extends Component{
     }
     render() {
         const newsItems  = this.props.news.map((news, i) => {
-            return(<li key={i}><NewsItemListing data = {news}/></li>)
+            return(<li className="list-group-item" key={i}><NewsItemListing data = {news}/></li>)
         })
         return (
-            <div>
-            <h2>Список Новостей</h2>
-                <Link to={'/submit'}>Добавить</Link>
-                {(this.props.news.length>0)? <ul>{newsItems}</ul> : <div>Простите но пока нет новостей</div>}
+            <div className="card-body">
+            <div className="card-title h4 align-content-center">Список Новостей</div>
+                <div className="alert alert-light">
+                <Link to={'/submit'} class="alert-link">Добавить</Link>
+                </div>
+                {(this.props.news.length>0)? <ul className="list-group-flush">{newsItems}</ul> : <div>Простите но пока нет новостей</div>}
             </div>
         )
     }
